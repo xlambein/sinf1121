@@ -47,7 +47,68 @@ else
 
 Cette solution est bien moins efficace que si l'on faisait les opérations en début de liste : en effet, ici `push()` et `pop()` s'effectuent en O(n), tandis que si ces opérations se faisaient en début de liste, le temps serait constant.
 
+Question 5
+-----------
+Ci-dessous ce trouve les deux codes en JAVA pour écrire un string dans un fichier ou lire une seul ligne d'un fichier.
+```java
+/**
+     *  Generic and primitive methods to write into a file
+     * 
+     * @pre  - a String of your choice and a destination file name
+     * @post - Write the string from "word" into the file with the name from "file"
+     *         When an IO Exception occurred, the methods shut himself down.
+     */
+	public static void Write(String word,String file){
+		try{
+			BufferedWriter bWrite = new BufferedWriter(new FileWriter(file));
+			bWrite.write(word);
+			bWrite.close();
+		}catch(IOException e){
+			System.exit(-1);
+		}
+	}
+	
+```
+```java
+    /**
+     *  Generic and primitive methods to read a single line from a file
+     * 
+     * @pre  - a file name
+     * @post - Return a string creating from the first line written in the file
+     *         When an IO Exception occurred, the methods shut himself down
+     *         When the file name or the fil himself is invalid, the methods return null.
+     */
+	public static String Read(String file){
+		String word = null;
+		try{
+			BufferedReader bRead = new BufferedReader(new FileReader(file));
+			word = bRead.readLine();
+			bRead.close();
+		}catch(FileNotFoundException e0){ return null; 
+		}catch(IOException e1){ System.exit(-1);
+		}
+		return word;
+	}
+```
 
+Question 6
+-----------
+ En utilisant le DOS, il est possible de faire appel à un programme JAVA et de lui faire passer des arguments. Ces derniers seront reçu par le programme dans le tableau initiale d'arguments: "String args[]". Ainsi, selon ce programme banale:
+```java
+ public static mainBanale(String args[]){
+    System.println(args[0]);
+    System.println(args[1]);
+ }
+```
+ De ce fait, lors de l'exécution du programme via le DOS. 
+```java
+    mainBanale Un Deux
+```
+ Nous lirons dans la console:
+```java
+ Un
+ Deux
+ ```
 Question 11
 -----------
 
