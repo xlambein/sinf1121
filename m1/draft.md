@@ -51,7 +51,7 @@ Question 3
 La classe Stack gere une pile en LIFO (le dernier objet à rentrer est donc le premier à partir). Elle possède 5 méthodes : push(E item), pop(), empty(), peek() et search(Object o). empty() sert à savoir si la pile est vide. peek() permet de savoir quel est l'objet du dessus de la pile mais sans l'enlever. search(Object o) regarde si l'argument est dans la pile et retourne sa position dans le cas échéant.
 Question 4
 -----------
-On peut remplir juste une file avec push qui rajoute un element et lorsque la méthode pop est utilisée on vide la première file dans la deuxième à l'exception du dernier élément que l'on récupère. Si on empilé 1 2 3 sur la pile, une des deux files sera donc vide et l'autre contiendra 1 2 3. Si on utilise pop, on retire de façon classique le dernier élément arrivé dans la pile (ici, 3) et on le place dans la file qui était vide. On agit de la même manière pour le 2. L'élément que l'on voulait retirer (le 1) est alors accessible. La complexité de pop sera alors de 2N-1.
+On peut remplir juste une file avec push qui rajoute un élément. Lorsque la méthode pop est utilisée on vide la première file dans la deuxième à l'exception du dernier élément que l'on récupère. Si on empilé 1 2 3 sur la pile, une des deux files sera donc vide et l'autre contiendra 1 2 3. Si on utilise pop, on retire de façon classique le dernier élément arrivé dans la pile (ici, 3) et on le place dans la file qui était vide. On agit de la même manière pour le 2. L'élément que l'on voulait retirer (le 1) est alors accessible. La complexité de pop sera alors de 2N-1.
 Question 5
 -----------
 Ci-dessous ce trouve les deux codes en JAVA pour écrire un string dans un fichier ou lire une seul ligne d'un fichier.
