@@ -132,6 +132,108 @@ Si le client modifie la collection avec un push() ou un pop() durant l'itératio
 
 Si on ne désire pas utiliser la fonctionnalité remove(), c'est une bonne idée de la laisser vide. On est obligé d'avoir une méthode remove() car elle est déclarée dans l'interface. On la laisse vide puisqu'on ne veut pas l'utiliser. Si jamais on appelle cette fonction, rien ne se passera.
 
+
+Question 9
+----------
+Pour comprendre le besoin d'une notation différente, il faut comprendre les avantages limitations des autres.
+
+Les trois notations les plus connues sont big Oh, big Theta, et big Omega. Elles ont chacune leurs intérêt et limitations.
+
+Big Oh comporte l'ensemble des fonctions qui grandissent asymptotiquement plus vite que la fonction étudiée.
+
+Soit g(x) une fonction faisant correspondre le nombre d'instruction à la taille du problème (x).
+
+f(x) ∈ O(g(x)) veut dire que f(x) grandira asymptotyquement plus vite que g(x). Il existe donc une infinité de fonction appartenant à O(g(x)), celles qui grandissent asymptotiquement aussi vite que g(x), et toutes celles qui grandissent asymptotiquement plus vite. Big Oh est intéressant lorsque ce qui nous intéresse est le pire des cas.
+
+Big Omega d'une fonction est l'opposée: l'ensemble des fonction qui grandissent asymptotiquement moins vite que la fonction, c'est rarement intéressant à savoir car on cherche généralement à savoir si un algorithme est plus rapide qu'un certain seuil, et rarement s'il est plus lent (on s'intéresse rarement au meilleur des cas).
+
+Big Theta d'une fonction est déjà beaucoup plus précis: l'ensemble est restreint aux fonction du même ordre, ce qui corresponds aux fonctions qui grandissent asymptotiquement à une vitesse équivalente, avec une variation d'au plus une constante multiplicative.
+
+Par exemple:
+
+si
+
+f(x) ∈ Θ(g(x))
+
+alors
+
+2f(x) ∈ Θ(g(x))
+
+mais pas 
+
+f(x)² ∈ Θ(g(x))
+
+La notation en tilde est encore plus précise, les fonctions doivent grandir asymptotiquement de la même manière.
+
+Mathématiquement, cela donne:
+
+on dit que g(x) ~ f(x) si et seulement si:
+
+lim(x → ∞) g(x)/f(x) = 1.
+
+Pour résumer, la notation en tilde est plus précise que les trois autres, car elle met une limite inférieure ET une limite supérieure, de plus elle est plus restreinte que la notation Theta dont la précision s'arrête à l'ordre.
+
+Question 10
+----------
+
+Pour effectuer le test du "doubling ratio", il suffit de tester le runtime en fonction de la taille du problème, et de doubler la taille du problème entre chaque test.
+Les problème de ce type de test sont qu'il faut que le "growth ratio" (nous verrons plus bas ce dont il s'aggit) atteigne une valeur limite et qu'il n'est pas possible de tester au delà d'une certaine taille de problème (parce qu'on double la taille du problème à chaque fois, on atteint rapidement des tailles astronomiques), l'avantage c'est qu'il donne quand même des données intéressante et souvent suffisantes pour déduire la caractérisation de l'implémentation et prévoire des runtimes avec une plus grosse taille de problème.
+
+À partir du test du doubling ratio, on peut extraire le "growth ratio", au ratio d'augmentation du runtime quand la taille des données double. Dans le cas présenté il est impossible de l'obtenir entre une taille de problème de 2000 et 4000 car le runtime est trop petit (il a même été arrondi à 0).
+
+Le calcul pour obtenir le ratio est runtime/(runtime Précedent).
+
+Nous obtenons ainsi les valeurs 3 (de 4000 à 8000), 4.3 (de 8000 à 16000), 3.92 (de 16000 à 32000) et de 4.0 (de 32000 à 64000).
+
+Le "growth ratio" semble osciller autours de 4 lorsque la taille du problème est assez grande, nous estimerons que la valeur limite est de 4, bien que plus de données auraient permis de confirmer sa vraie valeur.
+
+À partir de ce "growth ratio" que nous estimons à 4, nous allons chercher la caractérisation de l'algorithme.
+
+Pour cela nous utiliseront les formules:
+
+T(N) = a*N^b
+
+et
+
+"growth ratio" = 2^b
+
+où N est la taille du problème, T(N) est le runtime en fonction de la taille du problème et "a" et "b" sont des constantes.
+
+Pour caractériser T(N) correctement, il nous faut trouver "a" et "b"
+
+Commençons par b, on sait:
+
+"growth ratio" = 2^b
+
+donc
+
+log(2, "growth ratio") = b
+
+Nous avons estimé le "growth ratio" à 4, cela nous donne:
+
+b = 2
+
+trouvons maintenant a:
+
+utilisons un runtime connu (par exemple pour N = 64000, T(N) = 20.5)
+
+20.5 = a*64000^2
+
+on peut isoler a:
+
+20.5/(64000^2) = a
+
+on obtient:
+
+a = 5*10^-9
+
+donc
+
+T(N) = (5*10^(-9))*(N^2)
+
+pour N = 128000 ça fait T(128000) = 81,92.
+
+
 Question 11
 -----------
 
