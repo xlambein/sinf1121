@@ -46,6 +46,7 @@ else
 ```
 
 Cette solution est bien moins efficace que si l'on faisait les opérations en début de liste : en effet, ici `push()` et `pop()` s'effectuent en O(n), tandis que si ces opérations se faisaient en début de liste, le temps serait constant.
+
 Question 3
 -----------
 La classe Stack gere une pile en LIFO (le dernier objet à rentrer est donc le premier à partir). Elle possède 5 méthodes : push(E item), pop(), empty(), peek() et search(Object o). empty() sert à savoir si la pile est vide. peek() permet de savoir quel est l'objet du dessus de la pile mais sans l'enlever. search(Object o) regarde si l'argument est dans la pile et retourne sa position dans le cas échéant.
